@@ -16,10 +16,6 @@ at_detector = Detector(
 def detect():
     # Capture frame-by-frame
     ret, frame = cap.read()
-    # if frame is read correctly ret is True
-    if not ret:
-        print("Can't receive frame (stream end?). Exiting ...")
-        break
     # Our operations on the frame come here
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
     detection = at_detector.detect(img = gray);
@@ -29,15 +25,10 @@ def detect():
         annotated_image = cv.putText(annotated_image, text = f"{detected.tag_family}{detected.tag_id}", org = (detected.corners.astype(np.int32)[0][0], detected.corners.astype(np.int32)[0][1] + 20), fontFace = cv.FONT_HERSHEY_SIMPLEX, fontScale = 0.4, color = (0,255,0), thickness = 1)
     # Display the resulting frame
     cv.imshow('AprilTag Detection', annotated_image)
-    if cv.waitKey(1) == ord('q'):
-        break
+
 
 def start():
     ret, frame = cap.read()
-    # if frame is read correctly ret is True
-    if not ret:
-        print("Can't receive frame (stream end?). Exiting ...")
-        break
     # Our operations on the frame come here
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
     detection = at_detector.detect(img = gray);
