@@ -25,12 +25,10 @@ def detect():
         annotated_image = cv.putText(annotated_image, text = f"{detected.tag_family}{detected.tag_id}", org = (detected.corners.astype(np.int32)[0][0], detected.corners.astype(np.int32)[0][1] + 20), fontFace = cv.FONT_HERSHEY_SIMPLEX, fontScale = 0.4, color = (0,255,0), thickness = 1)
     # Display the resulting frame
     cv.imshow('AprilTag Detection', annotated_image)
-    cv.waitKey(1)
 
 
 def start(cap):
     ret, frame = cap.read()
-
     # Our operations on the frame come here
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
     detection = at_detector.detect(img = gray);
