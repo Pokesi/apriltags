@@ -28,7 +28,7 @@ def detect():
     cv.waitKey(1)
 
 
-def start():
+def start(cap):
     ret, frame = cap.read()
 
     # Our operations on the frame come here
